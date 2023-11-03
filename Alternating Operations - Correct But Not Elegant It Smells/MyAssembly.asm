@@ -31,19 +31,25 @@ doit proc
 	add ecx, power
 
 again:
+	; Next power:
 	mov eax, power		; for intel structure running eax
 	mul ebx				; for intel structure running eax
 	mov power, eax		; for intel structure running eax
+
+	; Add the power to total
 	add ecx, power
 
+	; Next power:
 	mov eax, power
 	mul ebx			
 	mov power, eax
 
+	; Multiply the current power to the total
 	mov eax, power
 	mul ecx				; replace total to ecx
 	mov ecx, eax		; replace total to ecx
 
+	; Repeat if necessary
 	inc count
 	cmp count, 5		; bug count 1 add/mul
 	jl again
