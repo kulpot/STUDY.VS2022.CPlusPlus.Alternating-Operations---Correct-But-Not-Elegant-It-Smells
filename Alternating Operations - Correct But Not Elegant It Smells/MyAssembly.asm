@@ -5,7 +5,8 @@
 .data
 ;count dword ?		; -------> ---- Assembly Adding Powers ----
 ;	counter dword 0		; dword(doubleWord) is 32bits and 2words ---> 1byte=8bits, 2bytes=word, 4bytes(32bits)=2words -> dword
-count dword 0		; ------- Alternating Operations - A First Code Attempt --------
+;count dword 0		; ------- Alternating Operations - A First Code Attempt --------
+count dword 1		; -------------- Alternating Operations - Correct But Not Elegant It Smells ------------------------
 power dword 2		; ------- Alternating Operations - A First Code Attempt --------
 ;total dword 0		; ------- Alternating Operations - A First Code Attempt --------
 
@@ -31,18 +32,20 @@ doit proc
 	add ecx, power
 
 again:
-	; Next power:
+	; Next power:	; redundant code
 	mov eax, power		; for intel structure running eax
 	mul ebx				; for intel structure running eax
 	mov power, eax		; for intel structure running eax
+	inc count
 
 	; Add the power to total
 	add ecx, power
 
-	; Next power:
+	; Next power:	; redundant code
 	mov eax, power
 	mul ebx			
 	mov power, eax
+	inc count
 
 	; Multiply the current power to the total
 	mov eax, power
@@ -51,7 +54,7 @@ again:
 
 	; Repeat if necessary
 	inc count
-	cmp count, 5		; bug count 1 add/mul
+	cmp count, 5		
 	jl again
 	ret
 
