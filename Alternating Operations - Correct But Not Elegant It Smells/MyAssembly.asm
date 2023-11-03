@@ -28,8 +28,9 @@ doit proc
 
 	mov ebx, 2
 	xor ecx, ecx		; 0 out ecx
-again:
 	add ecx, power
+
+again:
 	mov eax, power		; for intel structure running eax
 	mul ebx				; for intel structure running eax
 	mov power, eax		; for intel structure running eax
